@@ -1,5 +1,10 @@
 Revision history for Perl extension Net::Subnets.
 
+0.20  Sun Nov 16 16:00:00 2003
+
+	- added list() function
+	- better documentation
+
 0.19  Wed Nov 12 11:00:00 2003
 
 	- fixed a bug in subnets() and check() which produced

@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.19';
+$VERSION = '0.20';
 
 sub new {
     my $self = shift;
@@ -56,6 +56,17 @@ sub range {
     return ( \$lowip, \$highip );
 }
 
+sub list {
+    my ( $self, $lowip, $highip ) = @_;
+    my $lowint  = unpack( "N", pack( "C4", split( /\./, $$lowip ) ) );
+    my $highint = unpack( "N", pack( "C4", split( /\./, $$highip ) ) );
+    my @list = ( join( '.', unpack( 'C4', pack( 'N', $lowint ) ) ) );
+    while ( $lowint lt $highint ) {
+        push( @list, join( '.', unpack( 'C4', pack( 'N', ++$lowint ) ) ) );
+    }
+    return \@list;
+}
+
 1;
 __END__
 
@@ -67,11 +78,12 @@ Net::Subnets - Computing subnets in large scale networks
 
     use Net::Subnets;
     my $sn = Net::Subnets->new;
-    $sn->subnets(\@subnets);
-    if (my $subnetref = $sn->check(\$address)) {
+    $sn->subnets( \@subnets );
+    if ( my $subnetref = $sn->check( \$address ) ) {
         ...
     }
-    my ($lowipref, highipref) = $sn->range(\$subnet);
+    my ( $lowipref, highipref ) = $sn->range( \$subnet );
+    my $listref = $sn->list( \( $lowipref, $highipref ) );
 
 =head1 DESCRIPTION
 
@@ -84,21 +96,27 @@ The following functions are provided by this module:
         Creates an "Net::Subnets" object.
         It takes no arguments.
 
-    subnets(\@subnets)
+    subnets( \@subnets )
         The subnets() function lets you prepare a list of CIDR subnets.
         It takes an array reference.
 
-    check(\$address)
+    check( \$address )
         The check() function lets you check an IP address against the
         previously prepared subnets.
         It takes a scalar reference and returns a scalar reference to
         the first matching CIDR subnet.
 
-    range(\$subnet)
+    range( \$subnet )
         The range() function lets you calculate the IP address range
         of a subnet.
         It takes a scalar reference and returns two scalar references to
         the lowest and highest IP address.
+
+    list( \$lowip, \$highip )
+        The list() function lets you calculate a list containing all IP
+        addresses in a given range.
+        It takes two scalar references and returns a reference to a list
+        containing the IP addresses.
 
 This is a simple and efficient example for subnet matching:
 
@@ -110,7 +128,7 @@ This is a simple and efficient example for subnet matching:
     my $sn = Net::Subnets->new;
     $sn->subnets( \@subnets );
     my $results;
-    foreach my $address (@addresses) {
+    foreach my $address ( @addresses ) {
         if ( my $subnetref = $sn->check( \$address ) ) {
             $results .= "$address: $$subnetref\n";
         }
@@ -118,7 +136,7 @@ This is a simple and efficient example for subnet matching:
             $results .= "$address: not found\n";
         }
     }
-    print($results);
+    print( $results );
 
 This is a simple example for range calculation:
 
@@ -128,11 +146,25 @@ This is a simple example for range calculation:
 
     my $sn = Net::Subnets->new;
     my $results;
-    foreach my $subnet (@subnets) {
-        my ($lowipref, $highipref) = $sn->range($subnet);
+    foreach my $subnet ( @subnets ) {
+        my ( $lowipref, $highipref ) = $sn->range( $subnet );
         $results .= "$subnet: $$lowipref - $$highipref\n";
     }
-    print($results);
+    print( $results );
+    
+This is a simple example for list generation:
+    
+    use Net::Subnets;
+
+    my $lowip  = '192.168.0.1';
+    my $highip = '192.168.0.100';
+
+    my $sn = Net::Subnets->new;
+    my $listref = $sn->list( \( $lowip, $highip ) );
+    foreach my $address ( @{ $listref } ) {
+        # do something cool
+    }
+
 
 =head1 AUTHOR
 
