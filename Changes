@@ -31,3 +31,7 @@ Revision history for Perl extension Net::Subnets.
 0.17  Tue Sep 30 21:00:00 2003
 
 	- made the constructor inheritable, reported by Markus Thielmann
+
+0.18  Tue Sep 30 21:30:00 2003
+
+	- fixed some typos

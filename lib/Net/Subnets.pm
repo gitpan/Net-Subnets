@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 sub new {
     my $self = shift;
@@ -144,7 +144,7 @@ Juergen Peters (juergen.peters@taulmarill.de)
 Copyright 2003 Sebastian Riedel & Juergen Peters. All rights reserved.
 
 This library is free software. You can redistribute it and/or
-modify it under the same terms ## Please see file perltidy.ERR
+modify it under the same terms
 as perl itself.
 
 =cut
