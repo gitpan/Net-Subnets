@@ -1,8 +1,9 @@
 package Net::Subnets;
 
 use strict;
+use vars qw($VERSION);
 
-our $VERSION = '0.11';
+$VERSION = '0.12';
 
 sub new { bless( {} ) }
 
@@ -40,7 +41,7 @@ __END__
 
 =head1 NAME
 
-Net::Subnets - Match large lists of addresses against many subnets
+Net::Subnets - Match large lists of IP addresses against many CIDR subnets
 
 =head1 SYNOPSIS
 
@@ -53,7 +54,7 @@ Net::Subnets - Match large lists of addresses against many subnets
 
 =head1 DESCRIPTION
 
-Very fast matches large lists of addresses against many subnets.
+Very fast matches large lists of IP addresses against many CIDR subnets.
 
 The following functions are provided by this module:
 
@@ -80,7 +81,7 @@ Juergen Peters (juergen.peters@taulmarill.de)
 
 Copyright 2003 Sebastian Riedel & Juergen Peters. All rights reserved.
 
-This library is free software. you can redistribute it and/or
+This library is free software. You can redistribute it and/or
 modify it under the same terms as perl itself.
 
 =cut
