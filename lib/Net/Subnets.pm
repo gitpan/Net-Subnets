@@ -3,9 +3,12 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.16';
+$VERSION = '0.17';
 
-sub new { bless( {} ) }
+sub new {
+    my $self = shift;
+    return bless( {}, ( ref($self) || $self ) );
+}
 
 sub subnets {
     my ( $self, $subnets ) = @_;
@@ -14,8 +17,7 @@ sub subnets {
         /^(.+?)\/(.+)$/o;
         my $revmask = 32 - ( $2 || 32 );
         $self->{subnets}
-          { unpack( "N", pack( "C4", split( /\./, $1 ) ) ) >> $revmask } =
-          $_;
+          { unpack( "N", pack( "C4", split( /\./, $1 ) ) ) >> $revmask } = $_;
         $masks{$revmask}++;
     }
     @{ $self->{masks} } =
@@ -142,6 +144,7 @@ Juergen Peters (juergen.peters@taulmarill.de)
 Copyright 2003 Sebastian Riedel & Juergen Peters. All rights reserved.
 
 This library is free software. You can redistribute it and/or
-modify it under the same terms as perl itself.
+modify it under the same terms ## Please see file perltidy.ERR
+as perl itself.
 
 =cut

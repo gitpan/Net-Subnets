@@ -27,3 +27,7 @@ Revision history for Perl extension Net::Subnets.
 0.16  Sun Sep 28 22:00:00 2003
 
 	- added range() function
+
+0.17  Tue Sep 30 21:00:00 2003
+
+	- made the constructor inheritable, reported by Markus Thielmann
