@@ -11,3 +11,7 @@ Revision history for Perl extension Net::Subnets.
 0.12  Fri Sep 12 01:00:00 2003
 
 	- fixed even more typos
+
+0.13  Fri Sep 12 22:55:00 2003
+
+	- added example

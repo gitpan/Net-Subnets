@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.12';
+$VERSION = '0.13';
 
 sub new { bless( {} ) }
 
@@ -47,8 +47,8 @@ Net::Subnets - Match large lists of IP addresses against many CIDR subnets
 
     use Net::Subnets;
     my $sn = Net::Subnets->new;
-    $sn->subnets(\(qw(10.0.0.0/24 192.168.0.0/24)));
-    if (my $subnetref = $sn->check(\('10.0.0.1') {
+    $sn->subnets(\@addresses);
+    if (my $subnetref = $sn->check(\$address)) {
         ...
     }
 
