@@ -1,5 +1,8 @@
 Revision history for Perl extension Net::Subnets.
 
+0.21  Sat Feb 19 21:00:00 2005
+        - fixed pod (Jan Harders)
+
 0.20  Sun Nov 16 16:00:00 2003
 
 	- added list() function

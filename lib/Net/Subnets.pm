@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.20';
+$VERSION = '0.21';
 
 sub new {
     my $self = shift;
@@ -147,7 +147,7 @@ This is a simple example for range calculation:
     my $sn = Net::Subnets->new;
     my $results;
     foreach my $subnet ( @subnets ) {
-        my ( $lowipref, $highipref ) = $sn->range( $subnet );
+        my ( $lowipref, $highipref ) = $sn->range( \$subnet );
         $results .= "$subnet: $$lowipref - $$highipref\n";
     }
     print( $results );
