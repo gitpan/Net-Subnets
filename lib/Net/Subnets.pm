@@ -2,7 +2,7 @@ package Net::Subnets;
 
 use strict;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 sub new { bless( {} ) }
 
@@ -40,7 +40,7 @@ __END__
 
 =head1 NAME
 
-Net::Subnets
+Net::Subnets - Match large lists of addresses against many subnets
 
 =head1 SYNOPSIS
 
