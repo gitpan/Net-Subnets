@@ -1,4 +1,4 @@
-Net/Subnets version 0.18
+Net/Subnets version 0.19
 ========================
 
 Very fast matches large lists of IP addresses against many CIDR subnets,

@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.18';
+$VERSION = '0.19';
 
 sub new {
     my $self = shift;
@@ -16,7 +16,7 @@ sub subnets {
     foreach (@$subnets) {
         /^(.+?)\/(.+)$/o;
         my $revmask = 32 - ( $2 || 32 );
-        $self->{subnets}
+        $self->{subnets}{$revmask}
           { unpack( "N", pack( "C4", split( /\./, $1 ) ) ) >> $revmask } = $_;
         $masks{$revmask}++;
     }
@@ -29,8 +29,8 @@ sub check {
     foreach ( @{ $self->{masks} } ) {
         my $option =
           unpack( "N", pack( "C4", split( /\./, $$address ) ) ) >> $_;
-        if ( $self->{subnets}{$option} ) {
-            return \( $self->{subnets}{$option} );
+        if ( $self->{subnets}{$_}{$option} ) {
+            return \( $self->{subnets}{$_}{$option} );
         }
     }
     return 0;
