@@ -3,7 +3,7 @@ package Net::Subnets;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 sub new { bless( {} ) }
 
@@ -12,11 +12,9 @@ sub subnets {
     my %masks;
     foreach (@$subnets) {
         /^(.+?)\/(.+)$/o;
-        my $host    = $1;
-        my $mask    = $2;
-        my $revmask = 32 - ( $mask || 32 );
+        my $revmask = 32 - ( $2 || 32 );
         $self->{subnets}
-          { unpack( "N", pack( "C4", split( /\./, $host ) ) ) >> $revmask } =
+          { unpack( "N", pack( "C4", split( /\./, $1 ) ) ) >> $revmask } =
           $_;
         $masks{$revmask}++;
     }
@@ -36,12 +34,32 @@ sub check {
     return 0;
 }
 
+sub range {
+    my ( $self, $subnet ) = @_;
+    $$subnet =~ /^(.+?)\/(.+)$/o;
+    my $net =
+      pack( 'C4', split( /\./, $1 ) ) &
+      pack( 'B*', ( 1 x $2 ) . ( 0 x ( 32 - ( $2 || 32 ) ) ) );
+    my $lowip =
+      join( '.', unpack( 'C4', pack( 'B*', ( 0 x 31 ) . 1 ) | $net ) );
+    my $highip = join(
+        '.',
+        unpack(
+            'C4', pack( 'B*', ( 0 x $2 ) . ( 1 x ( 31 - $2 ) ) . 0 ) | $net
+        )
+    );
+    if ( $2 == 32 ) {
+        return ( \$highip, \$highip );
+    }
+    return ( \$lowip, \$highip );
+}
+
 1;
 __END__
 
 =head1 NAME
 
-Net::Subnets - Match large lists of IP addresses against many CIDR subnets
+Net::Subnets - Computing subnets in large scale networks
 
 =head1 SYNOPSIS
 
@@ -51,10 +69,12 @@ Net::Subnets - Match large lists of IP addresses against many CIDR subnets
     if (my $subnetref = $sn->check(\$address)) {
         ...
     }
+    my ($lowipref, highipref) = $sn->range(\$subnet);
 
 =head1 DESCRIPTION
 
-Very fast matches large lists of IP addresses against many CIDR subnets.
+Very fast matches large lists of IP addresses against many CIDR subnets and
+calculates IP address ranges.
 
 The following functions are provided by this module:
 
@@ -72,7 +92,13 @@ The following functions are provided by this module:
         It takes a scalar reference and returns a scalar reference to
         the first matching CIDR subnet.
 
-This is a simple and efficient example:
+    range(\$subnet)
+        The range() function lets you calculate the IP address range
+        of a subnet.
+        It takes a scalar reference and returns two scalar references to
+        the lowest and highest IP address.
+
+This is a simple and efficient example for subnet matching:
 
     use Net::Subnets;
 
@@ -89,6 +115,20 @@ This is a simple and efficient example:
         else {
             $results .= "$address: not found\n";
         }
+    }
+    print($results);
+
+This is a simple example for range calculation:
+
+    use Net::Subnets;
+
+    my @subnets = qw(10.0.0.0/24 10.0.1.0/24);
+
+    my $sn = Net::Subnets->new;
+    my $results;
+    foreach my $subnet (@subnets) {
+        my ($lowipref, $highipref) = $sn->range($subnet);
+        $results .= "$subnet: $$lowipref - $$highipref\n";
     }
     print($results);
 

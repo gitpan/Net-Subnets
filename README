@@ -1,8 +1,8 @@
-Net/Subnets version 0.15
+Net/Subnets version 0.16
 ========================
 
-Very fast matches large lists of IP addresses against many CIDR subnets
-and provides a simple object oriented interface.
+Very fast matches large lists of IP addresses against many CIDR subnets,
+calculates IP address ranges and provides a simple object oriented interface.
 
 INSTALLATION
 

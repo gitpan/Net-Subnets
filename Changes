@@ -23,3 +23,7 @@ Revision history for Perl extension Net::Subnets.
 0.15  Mon Sep 15 21:00:00 2003
 
 	- new test
+
+0.16  Sun Sep 28 22:00:00 2003
+
+	- added range() function
