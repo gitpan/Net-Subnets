@@ -1,15 +1,22 @@
+#!/usr/bin/env perl
+
+# Copyright (C) 2003-2009, Sebastian Riedel.
+
 use strict;
+use warnings;
+
 use Test::Simple tests => 510;
+
 use Net::Subnets;
 
 my $subnet = '10.0.0.0/23';
 
 my $sn   = Net::Subnets->new;
-my $list = $sn->list( $sn->range( \$subnet ) );
+my $list = $sn->list($sn->range(\$subnet));
 
 while (<DATA>) {
     chomp;
-    ok( ( $_ eq $$list[ $. - 1 ] ) );
+    ok(($_ eq $$list[$. - 1]));
 }
 
 __DATA__

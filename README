@@ -1,21 +1,8 @@
-Net/Subnets version 0.20
-========================
-
-Very fast matches large lists of IP addresses against many CIDR subnets,
-calculates IP address ranges and provides a simple object oriented interface.
-
-INSTALLATION
+Computing Subnets In Large Scale Networks.
 
 To install this module type the following:
 
-   perl Makefile.PL
-   make
-   make test
-   make install
-
-COPYRIGHT AND LICENCE
-
-Copyright (C) 2003 Sebastian Riedel & Juergen Peters. All rights reserved.
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+    perl Makefile.PL
+    make
+    make test
+    make install

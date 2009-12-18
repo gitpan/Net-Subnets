@@ -1,10 +1,26 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Net-Subnets
-version:      0.21
-version_from: lib/Net/Subnets.pm
-installdirs:  site
+--- #YAML:1.0
+name:               Net-Subnets
+version:            1.0
+abstract:           ~
+author:
+    - Sebastian Riedel (sri@cpan.org)
+license:            artistic_2
+distribution_type:  module
+configure_requires:  {}
+build_requires:  {}
 requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
+    ExtUtils::MakeMaker:  0
+    perl:                 5.008001
+    Test::More:           0
+resources:
+    license:     http://dev.perl.org/licenses/
+    repository:  http://github.com/kraih/net-subnets/tree/master
+no_index:
+    directory:
+        - t
+        - inc
+        - t
+generated_by:       ExtUtils::MakeMaker version 6.55_02
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4

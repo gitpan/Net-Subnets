@@ -1,52 +1,43 @@
 Revision history for Perl extension Net::Subnets.
 
-0.21  Sat Feb 19 21:00:00 2005
-        - fixed pod (Jan Harders)
+1.0   2009-12-10 00:00:00
+        - Fixed everything.
 
-0.20  Sun Nov 16 16:00:00 2003
+0.21  2009-02-19 00:00:00
+        - Fixed pod. (Jan Harders)
 
-	- added list() function
-	- better documentation
+0.20  2003-11-16 00:00:00
+        - Added list() function.
+	    - Better documentation.
 
-0.19  Wed Nov 12 11:00:00 2003
+0.19  2003-11-12 00:00:00
+	    - Fixed a bug in subnets() and check() which produced false matches.
+	      (Eric Johanson)
+	    - Fixed the changelog.
 
-	- fixed a bug in subnets() and check() which produced
-	  false matches, reported by Eric Johanson
+0.18  2003-10-13 00:00:00
+	    - Fixed some typos
 
-	- fixed the changelog
+0.17  2003-09-30 00:00:00
+	    - Made the constructor inheritable. (Markus Thielmann)
 
-0.18  Tue Sep 30 21:30:00 2003
+0.16  2003-09-28 00:00:00
+	    - Added range() function.
 
-	- fixed some typos
+0.15  2003-09-15 00:00:00
+        - New test.
 
-0.17  Tue Sep 30 21:00:00 2003
+0.14  2003-09-13 00:00:00
+	    - Better documentation.
 
-	- made the constructor inheritable, reported by Markus Thielmann
+0.13  2003-09-12 00:00:00
+	    - Added example.
 
-0.16  Sun Sep 28 22:00:00 2003
+0.12  2003-09-11 00:00:00
+	    - Fixed even more typos.
 
-	- added range() function
+0.11  2003-09-10 00:00:00
+	    - Fixed some typos.
 
-0.15  Mon Sep 15 21:00:00 2003
-
-	- new test
-
-0.14  Fri Sep 12 23:30:00 2003
-
-	- better documentation
-
-0.13  Fri Sep 12 22:55:00 2003
-
-	- added example
-
-0.12  Fri Sep 12 01:00:00 2003
-
-	- fixed even more typos
-
-0.11  Thu Sep 12 00:00:00 2003
-
-	- fixed some typos
-
-0.10  Wed Aug 27 22:00:00 2003
-
-	- first public release
+0.10  2009-08-28 00:00:00
+	    - first public release
