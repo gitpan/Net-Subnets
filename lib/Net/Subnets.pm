@@ -1,11 +1,11 @@
-# Copyright (C) 2003-2009, Sebastian Riedel.
+# Copyright (C) 2003-2010, Sebastian Riedel.
 
 package Net::Subnets;
 
 use strict;
 use vars qw/$VERSION/;
 
-$VERSION = '1.0';
+$VERSION = '1.01';
 
 sub new {
     my $self = shift;
@@ -174,7 +174,7 @@ Juergen Peters (juergen.peters@taulmarill.de)
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2003-2009, Sebastian Riedel.
+Copyright (C) 2003-2010, Sebastian Riedel.
 
 This program is free software, you can redistribute it and/or modify it under
 the terms of the Artistic License version 2.0.
