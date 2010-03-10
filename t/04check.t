@@ -17,9 +17,9 @@ my $sn = Net::Subnets->new;
 $sn->subnets(\@subnets);
 
 foreach my $addr (@good_addr) {
-    ok($sn->check(\$addr));
+    ok($sn->check(\$addr), 'address is good');
 }
 
 foreach my $addr (@bad_addr) {
-    ok(!$sn->check(\$addr));
+    ok(!$sn->check(\$addr), 'address is bad');
 }

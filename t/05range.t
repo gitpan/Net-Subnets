@@ -16,5 +16,6 @@ my @highips = qw(10.0.0.254 10.0.1.4);
 my $sn = Net::Subnets->new;
 for (my $i = 0; $i <= $#subnets; $i++) {
     my ($lowip, $highip) = $sn->range(\$subnets[$i]);
-    ok((($lowips[$i] eq $$lowip) && ($highips[$i] eq $$highip)));
+    ok((($lowips[$i] eq $$lowip) && ($highips[$i] eq $$highip)),
+        'right address range');
 }

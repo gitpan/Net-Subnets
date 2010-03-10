@@ -16,7 +16,7 @@ my $list = $sn->list($sn->range(\$subnet));
 
 while (<DATA>) {
     chomp;
-    ok(($_ eq $$list[$. - 1]));
+    ok(($_ eq $$list[$. - 1]), 'right list');
 }
 
 __DATA__

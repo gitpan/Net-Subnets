@@ -1,5 +1,8 @@
 Revision history for Perl extension Net::Subnets.
 
+1.02  2010-03-09 00:00:00
+        - Cleaned up tests.
+
 1.01  2010-03-01 00:00:00
         - Removed .perltidyrc.
 
